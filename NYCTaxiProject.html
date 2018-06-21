@@ -1,0 +1,64 @@
+<<!DOCTYPE html>
+<html>
+<head>
+	<title>NYC Taxi Cab Data</title>
+	<link href="css/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div class="standard_block">
+<div class="standard_text">
+	Idea! Find profit!
+
+	Earnings per hour.
+
+	Tip - cash trip entries list no tip! Have to remove this from estimate
+	Distance - mileage is wear and tear on the car, a cost per mile is subtracted
+	Time - addded in a set number in order to make a rough approximation of loading time/driving to a new fare time
+
+
+	Cleaning steps - reverse flipped latitude longitude
+
+
+	First graph set - kernel density estimator to make a "density" map of profit by pickup location
+
+	Idea, find the high profit density areas, contour out the big ones, and see if we do better than city average sticking to those areas.
+</div>
+
+<div>
+	(First image)
+</div>
+
+<div>
+	(Contour image)
+</div>
+
+<div>
+	Results: From the contour region, we get an average of ___ vs city average of ___
+
+	Why: Trips from less dense areas probably have a higher earnings per hour metric. This is probably accounted for by the fact that areas cabs tend ot have to drive out to have higher rates built into the fare.
+</div>
+
+<div>
+	Let's throw a clustering algorithm at it to get arbitrary region divisions, so we can look at each of those by the hour of the day
+</div>
+
+<div>
+Clusters
+</div>
+
+<div>
+	Pretty rainbow chart
+</div>
+<div>
+	Where the locations are
+</div>
+
+<div>
+	Analysis - most of the improvement that can be made over the baseline appears to be pickign up rides from the airport at jsut about the right time. Around noon and in the evening. There's also a slight advantage to knowing where to be in the early early morning.
+</div>
+</div>
+
+
+</body>
+</html>

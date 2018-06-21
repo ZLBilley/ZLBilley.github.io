@@ -69,19 +69,41 @@ body {
 
 
 /*Seattle Crime project parameters*/
+#headblock{
+	width:var(--pagewidth);
+	background-color:#FFFFFF;
+	padding-bottom: 20px;	
+}
+
 #precinct_map {
-	height:100vh;
-	/*width:20px;*/
+	/*height:100vh;*/
+	width:95%;
 }
 
 #block_1 {
-
+	width:var(--pagewidth);
+	display:flex;
+	background-color:#FFFFFF;
 }
 
-#txtblock_1 {
+#textblock_1 {
+	width:47%;
+	padding-left:2%;
+	padding-right:1%;
 
 }
 
 #imgblock_1 {
-	
+	width:47%;
+	padding-left:1%;
+	padding-right:2%;
+}
+
+#standard_block {
+	width:var(--pagewidth);
+	background-color:#999999;
+}
+
+.standard_text {
+	padding: 20px 2% 20px 2%;
 }

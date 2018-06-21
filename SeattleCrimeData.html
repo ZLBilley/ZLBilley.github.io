@@ -7,16 +7,51 @@
 
 <body>
 
-<div id=block_1>
-<div id=texblock_1> 
+<div id="headblock">
+	<h1>Seattle Crime Data Analyis</h1>
+	<div>
+		For the final project of the first semester of my data science certificate, I analyzed a database of police reports for the city of Seattle dating from 2008 through August 2017.
+	</div>
+</div>
+
+<div id="block_1">
+<div id="textblock_1"> 
 The City of Seattle is broken up into five precincts: North, West, East, Southwest, and Southeast.
 Each of those precincts have a number of sectors, denoted by a letter. For example, 'M' is downtown Seattle. Each of those sectors has a number of beats denoted by a letter-number pair. M1 is then one of the beats in the M sector.
 
 For this analysis, I decided to look at the sector level. There's enough of them that there's variation over the city, but not so many that the number would get overwhelming.
 </div>
 
-<div id=imgblock_1>
-<img src="./images/SPD_Beats_2015.png" lat="Precinct Map" id="precinct_map">
+<div id="imgblock_1">
+<img src="./images/SPD_Beats_2015.png" alt="Precinct Map" id="precinct_map">
+</div>
+</div>
+
+<div class="standard_block">
+<div class="standard_text">
+This block will be about this image:
+
+<img src="./images/CrimeTrendRegression.png" alt="Trends" id="Trendmap">
+
+One thing I fif was a linear regression on the crime rate in each sector of the city from the beginning of 2008 to fall 2017.
+
+South Lake Union and South Seattle are seeing a reduction in the fraction of crimes occurring in the city which are committed there, whereas downtown and North Seattle have a trend of more and more of the crime share shifting to them.
+</div>
+</div>
+
+<div class="standard_block">
+<div class="standard_text">
+Next one on the fitting crime rate to a daily cycle. I decided to stick with more recent data - 2016 and 2017 data - since that provides enough data to make a fit on a sector level and I wanted to keep it up to date.
+
+What did I do?
+
+Show the graphs:
+
+Can see that district M, downtown, has a majorly different cycle than other places.
+
+Caveats to point out - spike in crime count as 12am and 12midnight - probably just "sometime during the day" and "sometime at night"
+
+Data analysis, not really prediction?
 </div>
 </div>
 
