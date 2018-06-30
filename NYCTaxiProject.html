@@ -6,59 +6,107 @@
 </head>
 
 <body>
+
+<div class="back_bar">
+<a href="./index.html">Back ></a>
+</div>
+
 <div class="standard_block">
 <div class="standard_text">
-	Idea! Find profit!
+<div>
+	<h2>What is the data set?</h2>
+	The data set used for this project was a 1% sampling of the 2013 data for city taxis from the <a href="http://www.nyc.gov/html/tlc/html/about/trip_record_data.shtml">NYC Taxi and Limousine Commission.</a>
 
-	Earnings per hour.
+	<h2>What can we learn from the data?</h2>
+	I approached this dataset from the viewpoint of a taxi driver trying to optimize their workday.
 
-	Tip - cash trip entries list no tip! Have to remove this from estimate
-	Distance - mileage is wear and tear on the car, a cost per mile is subtracted
-	Time - addded in a set number in order to make a rough approximation of loading time/driving to a new fare time
+	In this case, optimizing means earning the most money per hour. So how best to estimate that from the data? The dataset contains the pickup and drop off locations, ride time, distance, and detailed fare information.
+
+	A simple estimate for profit per hour for a given ride can be done by adding the fare plus tip and dividing it by the ride time. But there are some additional considerations:
+
+	<ul>
+		<li><b>Vehicle costs</b>
+		The costs of operating a vehicle are often listed in terms of a cost per mile. Thus to model the costs of the vehicle, it makes sense to subtract a cost per mile times trip mileage from the money earned each trip</li>
+		<li><b>Cash tips are not reported</b>
+		Unfortunately virtually none of the cash fares have a tip listed. This is almost certainly due to there beign no incentive to report non-card tips. With this data set, we'll have to use the fare alone to determine profit.</li>
+		<li><b>Time needed between trips</b>
+		since there's not going to be a new fare entering the cab the moment the previous customer leaves, there will be some time between trips. This will be modeled as a fixed time penalty added on to the trip time.</li>
+	</ul>	
+
+	With this I came up with a metric for individual rides: the adjusted hourly income.
+
+	Some data cleaning was also necessary - removing unreasonably short/long and trips with nonsensical pickup locations, as well as flipping apparently swapped latitude/longitude coordinates.
 
 
-	Cleaning steps - reverse flipped latitude longitude
+	<h2>Scoring areas</h2>
+	So one idea I had was to score locations based on the value and density of rides nearby, and then see if high scoring areas managed to have better than average adjusted hourly income for rides starting there.
 
+	I used a kernal density estimator, weighted by the adjusted hourly income of the rides. This creates a continous scoring for the city based on the proximity, density, and adjusted hourly income from the rides. My plan was to identify the highest scoring regions and see if a taxi can do better than city average adjusted hourly income by starting rides in those areas.
 
-	First graph set - kernel density estimator to make a "density" map of profit by pickup location
-
-	Idea, find the high profit density areas, contour out the big ones, and see if we do better than city average sticking to those areas.
+</div>
 </div>
 
-<div>
-	(First image)
+<div class="standard_text">
+<div class="two_column">
+	<img src="./images/KDEweighted.png" alt="Kernel Density Map" id="kde_map" class="full_column_image">
 </div>
 
-<div>
-	(Contour image)
+<div class="two_column">
+	<img src="./images/KDEweightedcontoured.png" alt="Cropped KDE Map" id="kde_map" class="full_column_image">
+
+</div>
 </div>
 
-<div>
-	Results: From the contour region, we get an average of ___ vs city average of ___
+<div class="standard_text">
+	Results: From the contoured "high value" region, we get an average of 60.6 vs city average of 62.7. This is not that great.
 
-	Why: Trips from less dense areas probably have a higher earnings per hour metric. This is probably accounted for by the fact that areas cabs tend ot have to drive out to have higher rates built into the fare.
+	Why: Trips from less dense areas probably have a higher earnings per hour metric. This is probably accounted for by the fact that areas cabs tend to have to drive out to have higher rates built into the fare.
 </div>
 
-<div>
-	Let's throw a clustering algorithm at it to get arbitrary region divisions, so we can look at each of those by the hour of the day
+<div class="standard_text">
+	<h2>Clustering and time of day</h2>
+
+	Let's throw a clustering algorithm at it to get arbitrary region divisions, so we can look at each of those by the hour of the day. Mean shift seemed to work pretty well for just sectioning up the city. 
 </div>
 
-<div>
-Clusters
+<div class="standard_text">
+<img src="./images/ClusterExample.png" alt="Clusters" id="cluster_map" class="med_image">
 </div>
 
-<div>
-	Pretty rainbow chart
-</div>
-<div>
-	Where the locations are
+<div class="standard_text">
+	Note that there are a lot of widely scattered points that make a bunch of tiny, outlying clusters. Those will be ignored by removing all clusters from consideration with too small of a point count.
 </div>
 
-<div>
+<div class="standard_text">
+	
+</div>
+
+<div class="standard_text">
+<img src="./images/KFoldPerformanceIncomeZoneHour.png" alt="Performance" id="performance" class="med_image">
+</div>
+
+<div class="caption">
+	
+</div>
+
+
+
+<div class="standard_text">
+	<img src="./images/IncomeZoneHour.png" alt="Hourly Incomes by day" id="IncomeHour" class="med_image">
+</div>
+
+<div class="standard_text">
+	<img src="./images/BestZoneMap.png" alt="Best Zone Map" id="BestZoneMap" class="med_image">
+</div>
+
+<div class="standard_text">
 	Analysis - most of the improvement that can be made over the baseline appears to be pickign up rides from the airport at jsut about the right time. Around noon and in the evening. There's also a slight advantage to knowing where to be in the early early morning.
 </div>
 </div>
 
+<div class="back_bar">
+<a href="./index.html">Back ></a>
+</div>
 
 </body>
 </html>
